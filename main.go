@@ -1,6 +1,9 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/contrib/static"
+	"github.com/gin-gonic/gin"
+)
 
 func main() {
 	r := gin.Default()
@@ -16,6 +19,8 @@ func main() {
 			"message": "Follow the white rabbit",
 		})
 	})
+
+	r.Use(static.Serve("/", static.LocalFile("./views", true)))
 
 	r.Run(":3000")
 }
